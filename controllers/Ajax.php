@@ -89,7 +89,8 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 	
 	function getDb(){
 		try{
-			$db = new PDO('mysql:host=tircherbxaktirch.mysql.db;dbname=tircherbxaktirch','tircherbxaktirch','1405Shakti');
+			$db = new PDO('mysql:host=u3y93bv513l7zv6o.chr7pe7iynqr.eu-west-1.rds.amazonaws.com;dbname=id0hod5qtqrkfrn0','lv17207rcng54wdp','pg990b34i44xktr9');
+			//$db = new PDO('mysql:host=tircherbxaktirch.mysql.db;dbname=tircherbxaktirch','tircherbxaktirch','1405Shakti');
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
 		}
