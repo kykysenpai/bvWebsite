@@ -89,7 +89,8 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 
 	function getDb(){
 		try{
-			$db = new PDO('mysql:host=u3y93bv513l7zv6o.chr7pe7iynqr.eu-west-1.rds.amazonaws.com;dbname=id0hod5qtqrkfrn0','lv17207rcng54wdp','pg990b34i44xktr9', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+			$db = new PDO('mysql:host=localhost;dbname=bvWebsite','root','grosmotdepasse1.', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+			//$db = new PDO('mysql:host=u3y93bv513l7zv6o.chr7pe7iynqr.eu-west-1.rds.amazonaws.com;dbname=id0hod5qtqrkfrn0','lv17207rcng54wdp','pg990b34i44xktr9', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
 		}
@@ -205,7 +206,7 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 			}
 
 			if(file_exists($target_file)){
-				unlink($targer_file);
+				unlink($target_file);
 			}
 
 			if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
