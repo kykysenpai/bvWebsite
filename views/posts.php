@@ -39,7 +39,7 @@
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Actualité</label>
-                            <input type="checkbox" name="news">
+                            <input type="checkbox" name="news" class="form-control" id="actualite" value="news">
                         </div>
                     </div>
 

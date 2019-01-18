@@ -89,7 +89,7 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 
 	function getDb(){
 		try{
-			$db = new PDO('mysql:host=localhost;dbname=bvWebsite',username,password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+			$db = new PDO('mysql:host=server.mytcc.be;dbname=bvwebsite',username,password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
 		}
@@ -258,7 +258,6 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 
 		$db->beginTransaction();
 
-
 		$titre = $map['titreBlog'];
 		$texte = $map['texte'];
 		$subtitle = $map['sousTitreBlog'];
@@ -268,14 +267,16 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 			$target_file = "../files/" . basename($_FILES['file']['name']);
 			$stmt = prepareQuery('INSERT INTO blogs VALUES (DEFAULT, DEFAULT, ?, ?, ?, ?, ?, DEFAULT, DEFAULT)', $db);
 			$stmt->bindParam(4, $target_file, PDO::PARAM_STR);
+			$stmt->bindParam(5, $news, PDO::PARAM_BOOL);
 		} else {
-			$stmt = prepareQuery('INSERT INTO blogs VALUES (DEFAULT, DEFAULT, ?, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT)', $db);
+			$stmt = prepareQuery('INSERT INTO blogs VALUES (DEFAULT, DEFAULT, ?, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT)', $db);	
+			$stmt->bindParam(4, $news, PDO::PARAM_BOOL);
 		}
 
 		$stmt->bindParam(1, $titre, PDO::PARAM_STR);
 		$stmt->bindParam(2, $subtitle, PDO::PARAM_STR);
 		$stmt->bindParam(3, $texte, PDO::PARAM_STR);
-		$stmt->bindParam(5, $news, PDO::PARAM_BOOL);
+
 
 		try{
 			$stmt->execute();

@@ -72,7 +72,7 @@ function chargerAdmin(){
 function recupererValeur(name) {
 	var map = {};
 	$('form[name=' + name + ']').find(
-			'input[type=text],input[type=email],input[type=password],select,textarea')
+			'input[type=text],input[type=email],input[type=password],select,textarea,input[type=checkbox]:checked')
 			.each(function() {
 				map[$(this).attr('name')] = $(this).val();
 			});
@@ -176,6 +176,7 @@ $(function() {
 	$('#Logout').hide();
 	$('#Accueil').show();
 	$('#Fichiers').show();
+	$('#News').show();
 
 	ajax.estConnecte();
 

@@ -281,7 +281,9 @@ function ajax(){
 						if($map[poste]['pinned'] == 1){
 							$class = "pinnedBlog";
 						} else $class= "";*/
-						if($map[poste].news){
+						console.log($map[poste].news);
+						if($map[poste].news === "1"){
+							console.log("in news");
 							$htmlNews += "<div class=\"post-preview allPosts " + $class + "\" style=\"display:" + $show + "\"><a href=\"#\" id=" + $map[poste]['id'] + " class=\"posteCliquable\"><h2 class=\"post-title\">";
 							$htmlNews += $map[poste]['title'];
 							$htmlNews += "</h2>";
@@ -334,7 +336,7 @@ function ajax(){
 
 					$('#accueilPosts').html($htmlAccueil);
 					$('#fichiersPosts').html($htmlFichiers);
-					$('#fnewsPosts').html($htmlNews);
+					$('#newsPosts').html($htmlNews);
 
 
 					$('.posteCliquable').click(function(){

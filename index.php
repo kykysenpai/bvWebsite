@@ -31,6 +31,7 @@
 	$contact = new ContactController();
 	$posts = new PostsController();
 	$fichiers = new FichiersController();
+	$news = new NewsController();
 
 	$accueil->run();
 	$about->run();
@@ -38,6 +39,7 @@
 	$posts->run();
 	$login->run();
 	$fichiers->run();
+	$news->run();
 
 	require_once('views/footer.php');
 

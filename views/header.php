@@ -54,7 +54,7 @@
                     	<a href="#" id="Posts" class="menuNav pageAdministrateur">Créer un poste</a>
                     </li>
                     <li>
-                        <a href="#" id="News" class="menuNav pageAdministrateur">Créer une actualité</a>
+                        <a href="#" id="News" class="menuNav">Actualités</a>
                     </li>
                     <li>
                 		<a href="#" id="Code" class="menuNav pageAdministrateur">Changer le code de téléchargement</a>
