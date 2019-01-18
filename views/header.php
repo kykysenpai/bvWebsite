@@ -51,7 +51,10 @@
                         <a href="#" id="Contact" class="menuNav pageUtilisateur">Contact</a>
                     </li>
                     <li>
-                    	<a href="#" id="Posts" class="menuNav pageAdministrateur">Creer un poste</a>
+                    	<a href="#" id="Posts" class="menuNav pageAdministrateur">Créer un poste</a>
+                    </li>
+                    <li>
+                        <a href="#" id="News" class="menuNav pageAdministrateur">Créer une actualité</a>
                     </li>
                     <li>
                 		<a href="#" id="Code" class="menuNav pageAdministrateur">Changer le code de téléchargement</a>

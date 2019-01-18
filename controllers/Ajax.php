@@ -164,7 +164,7 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 			$texte = $map['texte'];
 			$prioritaire = $map['prioritaire'];
 			$subtitle = $map['sousTitreBlog'];
-			$pinned;
+//			$pinned;
 
 			if(strcmp($prioritaire,"none") == 0){
 				$pinned = 0;
@@ -262,18 +262,20 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 		$titre = $map['titreBlog'];
 		$texte = $map['texte'];
 		$subtitle = $map['sousTitreBlog'];
+		$news = isset($map['news']);
 
 		if(isset($_FILES['file'])){
 			$target_file = "../files/" . basename($_FILES['file']['name']);
-			$stmt = prepareQuery('INSERT INTO blogs VALUES (DEFAULT, DEFAULT, ?, ?, ?, ?, DEFAULT, DEFAULT)', $db);
+			$stmt = prepareQuery('INSERT INTO blogs VALUES (DEFAULT, DEFAULT, ?, ?, ?, ?, ?, DEFAULT, DEFAULT)', $db);
 			$stmt->bindParam(4, $target_file, PDO::PARAM_STR);
 		} else {
-			$stmt = prepareQuery('INSERT INTO blogs VALUES (DEFAULT, DEFAULT, ?, ?, ?, DEFAULT, DEFAULT, DEFAULT)', $db);
+			$stmt = prepareQuery('INSERT INTO blogs VALUES (DEFAULT, DEFAULT, ?, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT)', $db);
 		}
 
 		$stmt->bindParam(1, $titre, PDO::PARAM_STR);
 		$stmt->bindParam(2, $subtitle, PDO::PARAM_STR);
 		$stmt->bindParam(3, $texte, PDO::PARAM_STR);
+		$stmt->bindParam(5, $news, PDO::PARAM_BOOL);
 
 		try{
 			$stmt->execute();
@@ -295,7 +297,7 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 		}
 
 		if(file_exists($target_file)){
-			unlink($targer_file);
+			unlink($target_file);
 		}
 
 		if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {

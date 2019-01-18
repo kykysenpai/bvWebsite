@@ -273,6 +273,7 @@ function ajax(){
 					$map = JSON.parse(output);
 					$htmlFichiers = "<p></p>";
 					$htmlAccueil = "<p></p>";
+					$htmlNews = "<p></p>";
 					$show = "block";
 					$class = "";
 					for(var poste in $map){
@@ -280,14 +281,23 @@ function ajax(){
 						if($map[poste]['pinned'] == 1){
 							$class = "pinnedBlog";
 						} else $class= "";*/
-						if($map[poste].fichier){
-							$htmlFichiers +="<div class=\"post-preview allPosts " + $class + "\" style=\"display:" + $show + "\"><a href=\"#\" id=" + $map[poste]['id'] + " class=\"posteCliquable\"><h2 class=\"post-title\">";
+						if($map[poste].news){
+							$htmlNews += "<div class=\"post-preview allPosts " + $class + "\" style=\"display:" + $show + "\"><a href=\"#\" id=" + $map[poste]['id'] + " class=\"posteCliquable\"><h2 class=\"post-title\">";
+							$htmlNews += $map[poste]['title'];
+							$htmlNews += "</h2>";
+							$htmlNews += "<h3 class=\"post-subtitle\">";
+							$htmlNews += $map[poste]['subtitle'];
+							$htmlNews += "</h3>";
+							$htmlNews += "</a><p class=\"post-meta\">Posté le " + $map[poste]['date'].substring(8, 10) + " " + getMonth($map[poste]['date'].substring(5, 7)) + " " + $map[poste]['date'].substring(0, 4) + "</p>";
+							$htmlNews += "</div>";
+						} else if($map[poste].fichier) {
+							$htmlFichiers += "<div class=\"post-preview allPosts " + $class + "\" style=\"display:" + $show + "\"><a href=\"#\" id=" + $map[poste]['id'] + " class=\"posteCliquable\"><h2 class=\"post-title\">";
 							$htmlFichiers += $map[poste]['title'];
 							$htmlFichiers += "</h2>";
 							$htmlFichiers += "<h3 class=\"post-subtitle\">";
 							$htmlFichiers += $map[poste]['subtitle'];
 							$htmlFichiers += "</h3>";
-							$htmlFichiers += "</a><p class=\"post-meta\">Posté le " + $map[poste]['date'].substring(8,10) + " " + getMonth($map[poste]['date'].substring(5,7)) + " " + $map[poste]['date'].substring(0,4) + "</p>";
+							$htmlFichiers += "</a><p class=\"post-meta\">Posté le " + $map[poste]['date'].substring(8, 10) + " " + getMonth($map[poste]['date'].substring(5, 7)) + " " + $map[poste]['date'].substring(0, 4) + "</p>";
 							$htmlFichiers += "</div>";
 						} else {
 							$htmlAccueil +="<div class=\"post-preview allPosts " + $class + "\" style=\"display:" + $show + "\"><a href=\"#\" id=" + $map[poste]['id'] + " class=\"posteCliquable\"><h2 class=\"post-title\">";
@@ -320,8 +330,12 @@ function ajax(){
 					$htmlAccueil += "</ul>";
 					*/
 
+					$htmlNews += "<hr>";
+
 					$('#accueilPosts').html($htmlAccueil);
 					$('#fichiersPosts').html($htmlFichiers);
+					$('#fnewsPosts').html($htmlNews);
+
 
 					$('.posteCliquable').click(function(){
 						ajax.chargerPost($(this).attr('id'));
