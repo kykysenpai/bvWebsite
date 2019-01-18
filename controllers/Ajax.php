@@ -296,11 +296,11 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 			return 4;
 		}
 
-		if(file_exists($target_file)){
+		if(isset($target_file) && file_exists($target_file)){
 			unlink($target_file);
 		}
 
-		if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+		if (isset($target_file) && move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
 			$db->commit();
 			$db = null;
 			return 1;
